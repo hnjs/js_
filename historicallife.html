@@ -1,0 +1,34 @@
+<script type="text/javascript" src="05_higher_order/code/ancestry.js">
+</script>
+<script type="text/javascript">
+
+var ancestors = JSON.parse(ANCESTRY_FILE);
+
+function average(array) {
+	function plus(a, b) {return a+b;}
+	return array.reduce(plus) / array.length;
+}
+
+function groupBy(array, groupFn) {
+	var group = {};
+	array.forEach(function(element) {
+		var groupName = groupFn(element);
+		if (groupName in group) {
+			group[groupName].push(element.died - element.born);
+		} else {
+			group[groupName] = [element.died - element.born];
+		}
+	});
+	return group;
+}
+
+var byCentury = groupBy(ancestors, function (person) {
+	return Math.ceil(person.died/100);
+});
+
+for (var prop in byCentury) {
+	console.log(prop+": "+average(byCentury[prop]));
+}
+
+</script>
+

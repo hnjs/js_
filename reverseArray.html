@@ -1,0 +1,29 @@
+<script type="text/javascript">
+
+function reverseArray(a) {
+	if (a.length == 1) {return a};
+	if (a.length == 2) {return [a[1], a[0]];}
+	var b = [], j = 0;
+	for (i=a.length-1; i>=0; i--) {
+		b[j++] = a[i];
+	}
+	return b;
+}
+
+function reverseArrayInPlace(a) {
+	for (var i = 0; i < Math.floor(a.length/2); i++) {
+		var old = a[i];
+		a[i] = a[a.length-1-i];
+		a[a.length-1-i] = old;
+	};
+	return a;
+}
+
+console.log(reverseArray([1,2,3,4,5,6]));
+console.log(reverseArray([23, 5]));
+
+
+console.log(reverseArrayInPlace([1,2,3,4,5,6]));
+console.log(reverseArrayInPlace([23, 5]));
+
+</script>

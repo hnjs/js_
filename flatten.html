@@ -1,0 +1,13 @@
+<script type="text/javascript">
+
+var arrOfArrays = [[1,2,3,4],[5,6,7],[8,9,10,11,12]];
+
+function flatten(a) {
+	return a.reduce(function(x,y){
+		return x.concat(y);
+	});
+}
+
+console.log(flatten(arrOfArrays));
+
+</script>

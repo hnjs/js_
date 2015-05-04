@@ -1,0 +1,29 @@
+<script type="text/javascript">
+
+var a1 = [2,4,6,8,10];
+var a2 = [1,2,3,4,5];
+var a3 = [1,3,5,7,9];
+
+function every(a, fn) {
+	for (var i = 0; i < a.length; i++) {
+		if (!fn(a[i])) {return false;}
+	};
+	return true;
+}
+
+function some(a, fn) {
+	for (var i = 0; i < a.length; i++) {
+		if (fn(a[i])) {return true;}
+	};
+	return false;
+}
+
+console.log(every(a1,function(x){return x%2==0;}))
+console.log(every(a2,function(x){return x%2==0;}))
+console.log(every(a3,function(x){return x%2==0;}))
+
+console.log(some(a1,function(x){return x%2==0;}))
+console.log(some(a2,function(x){return x%2==0;}))
+console.log(some(a3,function(x){return x%2==0;}))
+
+</script>

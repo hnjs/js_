@@ -1,0 +1,80 @@
+<script type="text/javascript">
+
+var o3 = {value: 3, rest: null};
+var o2 = {value: 2, rest: o3};
+var o1 = {value: 1, rest: o2};
+
+console.log(o1);
+
+function arrayToList(a) {
+	len = a.length;
+	function gen(index) {
+		if (index < len) {
+			if (index == len-1) {
+				return {value: a[index], rest: null};
+			}
+			return {value: a[index], rest: gen(index+1)};
+		}
+	}
+	return gen(0);
+}
+
+function prepend(val, list) {
+	return {value: val, rest: list};
+}
+
+function listToArray(l) {
+	var a = [];
+	function ext(l) {
+		if ("value" in l) {a.push(l.value);}
+		if ("rest" in l && l.rest !== null) {
+			ext(l.rest);
+		}
+	}
+	ext(l);
+	return a;
+}
+
+//starts level from 0
+function nth(list, level) {
+	var i = 0;
+	if (level < 0) {return undefined};
+	do {
+		if (i==level) return list.value;
+		list = list.rest;
+		i++;	
+	} while (list.rest !== null);
+
+	return (i < level) ? undefined : list.value;
+}
+
+//starts level from 1
+/*
+function recursiveNth(list, level) {
+	var i = 1;
+	if (level < 1) {return undefined};
+
+	function ext(list) {
+		if (i == level) {
+			return list.value;
+		} else if (list.list !== null) {
+			i++; 
+			return ext(list.list);
+		}
+	}
+
+	return ext(list);
+}
+*/
+
+var newList = arrToList([1,2,3,4]);
+var prependList = prepend(newList, 5);
+var newArray = listToArray(prependList);
+
+console.log(newList);
+console.log(prepend(newList, 5));
+console.log(newArray);
+console.log(nth(prependList, 3));
+//console.log(recursiveNth(prependList, 10));
+
+</script>

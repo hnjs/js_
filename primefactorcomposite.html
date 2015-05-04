@@ -1,0 +1,94 @@
+<head>
+	<script src="/Users/harish/Coding/JS/underscore/underscore/underscore.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+
+function isPrime(num) {
+	if (num%2 == 0) return false;
+	for (var i=3; i<num; i+=2) {
+		if (num%i == 0) {
+			return false;
+		}
+	}
+	return true;
+}
+
+function generatePrimeArray(){
+	var count = 0, i=3;
+	var p = [2];
+	do {
+		if (isPrime(i)) {
+			p.push(i);
+			count++;
+		}
+		i+=2;
+	} while (count <= 20000);
+	return p;
+}
+
+function getNextPrime(n) {
+	if (n==2) return 3;
+	while (!isPrime(n+=2)){}
+	return n;
+}
+
+function getPrimeFactors(c) {
+	var i=0, p=[1], prime=2;
+	if (c===1) return p;
+	do {
+		if (c%prime == 0) {
+			p.push(prime);
+			c = c / prime;
+			prime = 2;
+		} else {
+			prime = getNextPrime(prime);
+			continue;
+		}
+	} while(c > 1);
+	return p;
+}
+
+function reverseNumber(x) {
+	var number = "";
+
+	do {
+		number = number + x%10;
+		x = Math.floor(x/10);
+	} while (x>0);
+
+	return Number(number);
+}
+
+function isPalindrome(x) {
+	return (x === reverseNumber(x)) ? true : false;
+}
+
+var temp1 = 0, temp2 = 0, count = 0;
+var nums = [0,0];
+var temp = [];
+
+for (var i=999; i>100; i--) {
+	for (var j=999; j>100; j--) {
+		if (isPalindrome(i*j)) {
+			temp[count++] = (i+" * "+j+" = "+i*j);
+			temp2 = i*j;
+			if (temp2 > temp1) {
+				temp1 = temp2;
+				nums = [i,j];
+			}
+		}
+	}
+}
+
+
+
+//var maxPali = _.max(temp);
+
+console.log("Reverse of number 7647565 is " + reverseNumber(7647565));
+
+console.time("Gen Prime Array");
+var primeArray = generatePrimeArray();
+console.timeEnd("Gen Prime Array");
+//console.log("10001st prime number is "+ primeArray[primeArray.length-1]);
+
+</script>

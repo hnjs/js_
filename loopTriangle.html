@@ -1,0 +1,21 @@
+<script type="text/javascript">
+
+// My version
+
+var str = "";
+
+for (var i = 0; i < 7; i++){
+	for (var j = 0; j <= i; j++) {
+		str += "#"
+	};
+	//document.write(str + "<br/>");
+	console.log(str+"\n");
+	str = "";
+}
+
+// Author's version
+
+for (var line = "#"; line.length<8; line+="#")
+	console.log(line);
+
+</script>

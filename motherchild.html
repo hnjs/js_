@@ -1,0 +1,37 @@
+<script type="text/javascript" src="05_higher_order/code/ancestry.js">
+</script>
+<script type="text/javascript">
+
+var ancestors = JSON.parse(ANCESTRY_FILE);
+var byName = {};
+
+ancestors.forEach(function(person) {
+	byName[person.name] = person;
+});
+var ancesNames = Object.keys(byName);
+
+function validMothers(name, index, array) {
+	var obj = byName[name];
+	return obj.mother && byName[obj.mother];
+}
+
+function getAge(name, index, array) {
+	var obj = byName[name];
+	return obj.born - byName[obj.mother].born;
+}
+
+function average(array) {
+	function plus(a, b) {return a+b;}
+	return array.reduce(plus) / array.length;
+}
+
+console.log("Average age = " + average(ancesNames.filter(validMothers).map(getAge)));
+
+</script>
+
+<!--
+1. filter the names without mother object or mother property != null
+2. map the names into an array of age diff
+3. reduce it to sum
+4. use average function
+-->

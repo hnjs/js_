@@ -1,0 +1,61 @@
+<head>
+	<script src="/Users/harish/Coding/JS/underscore/underscore/underscore.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+
+function primeRange(max)
+{
+  var max_sqrt = Math.sqrt(max),
+    range = [],
+    current = 0;
+  
+  //generate array of numbers
+  for (i = 2; i <= max; i++)
+      range.push(i);
+  
+  //filter multiples out
+  while (range[current] <= max_sqrt)
+  {
+      range = range.filter(function(n)
+      {
+          return (n == range[current] || n % range[current] != 0);
+      });
+      
+      current++;
+  }
+  
+  return range;
+}
+
+function genSievePrime(max) {
+	var n = _.range(2, max+1), t = [], pos = 0;
+	do {
+		t = _.filter(n, function(x){
+			if (x<=n[pos]) {return x;}
+			if (x>n[pos] && x%n[pos]!=0) { return x;}
+		});
+		pos++;
+		if (n.length == t.length) {
+			n = t;
+			break;
+		}
+		n = t;
+	} while(pos <= n.length);
+	return n;
+}
+
+console.log("===================== Harish's Sieve Implementation =======================");
+console.time("my sieve prime");
+var prime = genSievePrime(101);
+console.timeEnd("my sieve prime");
+console.log("Total prime numbers generated: "+prime.length);
+console.log(prime);
+
+console.log("===================== Other's Sieve Implementation =======================");
+console.time("other sieve prime");
+var prime2 = primeRange(101);
+console.timeEnd("other sieve prime");
+console.log("Total prime numbers generated: "+prime2.length);
+console.log(prime2);
+
+</script>

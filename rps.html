@@ -1,0 +1,65 @@
+<script type="text/javascript">
+
+var getUserChoice = function(){
+	do{
+		var uc = prompt("Do you choose rock, paper or scissors?");
+		var conf = false;
+		if (uc !== "rock" && uc !== "paper" && uc != "scissors"){
+			conf = confirm("Wrong choice chosen. Do you want to try again?");
+			uc = "cancel";
+		};
+	}while (conf);
+	
+	return uc;
+};
+
+var getComputerChoice = function(){
+	var computerChoice = Math.random();
+	//console.log(computerChoice);
+	if (computerChoice < 0.34)
+		return "rock";
+	else if(computerChoice <= 0.67)
+		return "paper";
+	else
+		return "scissors";
+};
+
+var compare = function(choice1, choice2) {
+    if (choice1 === choice2) {
+        return "The result is a tie!";
+    } else if (choice1 === "rock") {
+        if (choice2 === "scissors") {
+            return "rock wins";
+        } else {
+            return "paper wins";
+        }
+    } else if (choice1 == "paper") {
+        if (choice2 === "rock") {
+            return "paper wins";
+        } else {
+            return "scissors wins";
+        }
+    } else if(choice1 == "scissors") {
+        if (choice2 === "rock") {
+            return "rock wins";
+        } else {
+            return "scissors wins";
+        }
+    }
+};
+
+var userChoice = getUserChoice();
+
+if (userChoice != "cancel"){
+	var computerChoice = getComputerChoice();
+	console.log("User chose: " + userChoice + ". Computer chose: " + computerChoice);
+	console.log(compare(userChoice, computerChoice));
+} else {
+	console.log("User didn't choose right option. Game stopped");
+};
+
+
+
+
+
+</script>

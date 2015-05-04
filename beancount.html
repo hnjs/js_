@@ -1,0 +1,21 @@
+<script type="text/javascript">
+
+function countBs(line)
+{
+	return countChar(line, 'B');
+}
+
+function countChar(line, searchChar)
+{
+	var counter = 0;
+	for (var i = 0; i < line.length; i++) {
+		if (line.charAt(i) == searchChar)
+			counter++;
+	};
+	return counter;
+}
+console.log(countBs("Baskh BASdas adfBBBsdfkjhd BBaskB"));
+
+console.log(countChar("ksjdfholjsljlweo8hflkjafhjksd", "k"));
+
+</script>
