@@ -13,7 +13,7 @@ function toWords(n) {
 	var line;
 	if (isNaN(n) || n > 999) { return null; }
 
-	if (n == 0) { line = ""; }
+	if (n === 0) { line = ""; }
 	else if (n < 20) { line = ones_teens[n]; }
 	else if (n < 100) {
 		line = tens[(n / 10) | 0]; 
@@ -27,6 +27,7 @@ function toWords(n) {
 
 function chunkify(n) {
 	var numbers = [];
+	if (n > Number.MAX_SAFE_INTEGER) { return numbers; }
 	while (n > 0) {
 		numbers[numbers.length] = n % 1000;
 		n = Math.floor(n / 1000);
@@ -43,4 +44,7 @@ function notEmpty(item) {
 	return !!item; // using double ! returns boolean value. !!item is not same as item.
 }
 
-console.log(chunkify(999999999999999).map(toWords).map(scalify).filter(notEmpty).reverse().join(", "));
+console.log(chunkify(9999999999999999).map(toWords).map(scalify).filter(notEmpty).reverse().join(", "));
+
+console.log(chunkify(9007199254740991).map(toWords).map(scalify).filter(notEmpty).reverse().join(", "));
+
