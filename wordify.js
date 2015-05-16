@@ -1,6 +1,7 @@
 // Author		: Harish Narayanan
 // Date 		: 15 May 2015
 // Description 	: Code to convert number to words
+// Update		: 16 May 2015 - re-wrote code to utilize higher order functions and arrays effectively
 
 var ones_teens 	= ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 
 					'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
